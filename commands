@@ -1,0 +1,24 @@
+Ipvsadm -L -n --stats  
+Ipvsadm -L -n --rate
+Ipvsadm -L -n --timeout
+
+
+删除所有集群服务
+-C 清空ipvs规则
+保持规则
+-S
+# 导出规则
+# ipvsadm -S > /path/to/somefile
+# 读入规则
+# ipvsadm -R < /path/to/somefile
+
+
+
+ echo 1 > /proc/sys/net/ipv4/ip_forward
+
+
+# 保存服务，重启后还有效
+Service ipvsadm save
+
+#看当前连接数
+ipvsadm -L -n -c
