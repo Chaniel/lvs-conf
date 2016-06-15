@@ -16,5 +16,7 @@ RS2:
  ipvsadm -a -t 172.16.100.1:80 -r 10.1.1.2:80 -m
  
  
+ # 打开转发
+  echo 1 > /proc/sys/net/ipv4/ip_forward
  
  
