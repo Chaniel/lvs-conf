@@ -1,0 +1,15 @@
+Ipvs 和iptables不能同时使用
+
+看director服务器有没有ipvs的功能
+# grep -i ip_vs /boot/config-2.6.32-431.el6.x86_64
+发现内核中已经安装了ipvs
+那我们只要安装ipvsadm就可以了
+yum install ipvsadm
+
+
+
+内核模块
+ip_vs
+
+管理工具
+ipvsadm
