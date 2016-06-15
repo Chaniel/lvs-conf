@@ -1,0 +1,34 @@
+# 网络规划（使用三台虚拟机，宿主机Windows IP为192.168.0.16）
+director:
+  DIP: eth0 192.168.0.23
+  VIP: eth0:0 192.168.0.30
+
+realserver1:
+  RIP: eth0 192.168.0.21
+  VIP: lo:0 192.168.0.30
+  
+realserver2:
+  RIP: eth0 192.168.0.23
+  VIP: lo:0 192.168.0.30
+
+
+[root@dev3 lvs]# ipvsadm -L -n
+IP Virtual Server version 1.2.1 (size=4096)
+Prot LocalAddress:Port Scheduler Flags
+  -> RemoteAddress:Port           Forward Weight ActiveConn InActConn
+TCP  192.168.0.30:80 wlc
+  -> 192.168.0.21:80              Route   1      0          0         
+  -> 192.168.0.22:80              Route   2      0          0    
+  
+  
+
+注意：三台虚拟机MAC地址必须不同，重设MAC后需要清空/etc/udev/rules.d/70-persistent-net.rules配置信息并重启网络。
+具体见chaniel/virtualbox使用
+
+网卡MAC设置好后，检查4太机器网络互通。
+将lvs-realserver.sh在2台realserver上执行
+将lvs-dr.sh在director上执行
+在realserver上都启动web服务监听80端口
+使用Windows客户端浏览器测试，使用ab命令在director访问 http://192.168.0.30/
+ab命令使用yum install httpd安装
+
