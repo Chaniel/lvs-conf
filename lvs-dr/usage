@@ -32,3 +32,4 @@ TCP  192.168.0.30:80 wlc
 使用Windows客户端浏览器测试，使用ab命令在director访问 http://192.168.0.30/
 ab命令使用yum install httpd安装
 
+ echo 1 > /proc/sys/net/ipv4/ip_forward
