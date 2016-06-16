@@ -1,2 +1,2 @@
 # lvs-conf
-lvs conf examples
+lvs configuration examples
