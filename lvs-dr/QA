@@ -1,3 +1,7 @@
 # arp_ignore arp_announce 到底需要配置在那个接口？
 
-# lvs不能和防火墙iptables同时启用，否则冲突。
+# lvs尽量不和防火墙iptables同时启用，否则冲突或性能不好。
+
+
+# lvs-dr模型的的关键点是 director和real server需要在同一物理网络内，不隔路由设备。
+
